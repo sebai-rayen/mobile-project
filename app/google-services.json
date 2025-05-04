@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "931070551822",
+    "project_id": "signuploginfirebaserealt-7c114",
+    "storage_bucket": "signuploginfirebaserealt-7c114.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931070551822:android:c521461824c53459a4995f",
+        "android_client_info": {
+          "package_name": "com.example.signuploginrealtime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBALpCWr3hhhB7KDUPT4ct5ZNzuCNYLRMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
