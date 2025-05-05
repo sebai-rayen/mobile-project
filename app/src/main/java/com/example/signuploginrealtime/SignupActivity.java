@@ -43,23 +43,24 @@ public class SignupActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //عند الضغط على زر "تسجيل"، ينفذ هذا الكود:
+                String name = signupName.getText().toString().trim();
+                String email = signupEmail.getText().toString().trim();
+                String username = signupUsername.getText().toString().trim();
+                String password = signupPassword.getText().toString().trim();
+
+                if (!validateName() | !validateEmail() | !validateUsername() | !validatePassword()) {
+                    Toast.makeText(SignupActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 database = FirebaseDatabase.getInstance();
                 reference = database.getReference("users");
-               // الحصول على مرجع لقاعدة بيانات Firebase، تحديدًا إلى مسار users.
-
-                String name = signupName.getText().toString();
-                String email = signupEmail.getText().toString();
-                String username = signupUsername.getText().toString();
-                String password = signupPassword.getText().toString();
-                // استخراج القيم المدخلة من الحقول وتحويلها إلى نصوص.
 
                 HelperClass helperClass = new HelperClass(name, email, username, password);
                 reference.child(username).setValue(helperClass);
                // تخزين بيانات المستخدم في قاعدة البيانات تحت اسم المستخدم كـ "مفتاح".
 
-                Toast.makeText(SignupActivity.this, "You have signup successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupActivity.this, "You have signed up successfully!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(intent);
 
@@ -79,4 +80,49 @@ public class SignupActivity extends AppCompatActivity {
 
 
     }
+
+    public Boolean validateName() {
+        String val = signupName.getText().toString();
+        if (val.isEmpty()) {
+            signupName.setError("Name cannot be empty");
+            return false;
+        } else {
+            signupName.setError(null);
+            return true;
+        }
+    }
+
+    public Boolean validateEmail() {
+        String val = signupEmail.getText().toString();
+        if (val.isEmpty()) {
+            signupEmail.setError("Email cannot be empty");
+            return false;
+        } else {
+            signupEmail.setError(null);
+            return true;
+        }
+    }
+
+    public Boolean validateUsername() {
+        String val = signupUsername.getText().toString();
+        if (val.isEmpty()) {
+            signupUsername.setError("Username cannot be empty");
+            return false;
+        } else {
+            signupUsername.setError(null);
+            return true;
+        }
+    }
+
+    public Boolean validatePassword() {
+        String val = signupPassword.getText().toString();
+        if (val.isEmpty()) {
+            signupPassword.setError("Password cannot be empty");
+            return false;
+        } else {
+            signupPassword.setError(null);
+            return true;
+        }
+    }
+
 }
